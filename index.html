@@ -134,7 +134,7 @@
         </div>
       </div>
       <!-- Card 5 -->
-      <div class="card" data-cat="برغر">
+      <div class="card" data-cat="برغر" data-extra="true" style="display: none;">
         <img class="card-img" src="برجر_دجاج.png" alt="برجر دجاج">
         <div class="card-body">
           <div class="card-top">
@@ -155,7 +155,7 @@
         </div>
       </div>
       <!-- Card 6 -->
-      <div class="card" data-cat="برغر">
+      <div class="card" data-cat="برغر" data-extra="true" style="display: none;">
         <img class="card-img" src="برجر_دجاج_دبل.jpg" alt="برجر دجاج دبل">
         <div class="card-body">
           <div class="card-top">
@@ -176,7 +176,7 @@
         </div>
       </div>
       <!-- Card 7 -->
-      <div class="card" data-cat="برغر">
+      <div class="card" data-cat="برغر" data-extra="true" style="display: none;">
         <img class="card-img" src="برجر_دجاج_بالصوص_الايطالي.jpg" alt="برجر دجاج بالصوص الايطالي">
         <div class="card-body">
           <div class="card-top">
@@ -197,7 +197,7 @@
         </div>
       </div>
       <!-- Card 8 -->
-      <div class="card" data-cat="برغر">
+      <div class="card" data-cat="برغر" data-extra="true" style="display: none;">
         <img class="card-img" src="برجر_دجاج_ماريو.jpg" alt="برجر دجاج ماريو">
         <div class="card-body">
           <div class="card-top">
@@ -275,7 +275,7 @@
         </div>
       </div>
       <!-- Card 13 (مقبلات) -->
-      <div class="card" data-cat="مقبلات" style="display:none">
+      <div class="card" data-cat="مقبلات" data-extra="true" style="display:none">
         <img class="card-img" src="مخلل.jpg" alt="مخلل ">
         <div class="card-body">
           <div class="card-top">
@@ -289,7 +289,7 @@
         </div>
       </div>
       <!-- Card 14 (مقبلات) -->
-      <div class="card" data-cat="مقبلات" style="display:none">
+      <div class="card" data-cat="مقبلات" data-extra="true" style="display:none">
         <img class="card-img" src="سلطة.jpg" alt="سلطة">
         <div class="card-body">
           <div class="card-top">
@@ -388,9 +388,9 @@
       </div>
   </section>
   <div class="show-more-wrap">
-    <button class="btn-show-more">
-      <span>عرض المزيد</span>
-      <span class="material-icons">keyboard_arrow_down</span>
+    <button class="btn-show-more" id="show-more-btn" onclick="toggleMore()">
+      <span id="show-more-text">عرض المزيد</span>
+      <span class="material-icons" id="show-more-icon">keyboard_arrow_down</span>
     </button>
   </div>
 
@@ -438,13 +438,47 @@
   </footer>
 
   <script>
+    let expanded = false;
+    let currentCat = 'برغر';
+
     function filterTab(el, cat) {
+      currentCat = cat;
+      expanded = false;
       document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
       el.classList.add('active');
-      document.querySelectorAll('.card').forEach(c => {
-        c.style.display = c.dataset.cat === cat ? '' : 'none';
-      });
+      updateCards();
+      updateBtn();
     }
+
+    function updateCards() {
+      document.querySelectorAll('.card').forEach(c => {
+        const matchCat = c.dataset.cat === currentCat;
+        const isExtra = c.dataset.extra === 'true';
+        if (!matchCat) { c.style.display = 'none'; return; }
+        if (isExtra && !expanded) { c.style.display = 'none'; return; }
+        c.style.display = '';
+      });
+
+      // هل في بطاقات مخفية في الكاتيغوري الحالية؟
+      const hasExtra = [...document.querySelectorAll('.card')]
+        .some(c => c.dataset.cat === currentCat && c.dataset.extra === 'true');
+      document.getElementById('show-more-btn').style.display = hasExtra ? '' : 'none';
+    }
+
+    function toggleMore() {
+      expanded = !expanded;
+      updateCards();
+      updateBtn();
+    }
+
+    function updateBtn() {
+      document.getElementById('show-more-text').textContent = expanded ? 'عرض أقل' : 'عرض المزيد';
+      document.getElementById('show-more-icon').textContent = expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down';
+    }
+
+    // تطبيق الإعدادات الافتراضية عند تحميل الصفحة
+    updateCards();
+    updateBtn();
   </script>
 </body>
 
