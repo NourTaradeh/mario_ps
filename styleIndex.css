@@ -68,9 +68,6 @@ nav {
     transition: color 0.2s;
 }
 
-.nav-links .btn {
-    margin-right: 30px;
-}
 
 .nav-links a:hover {
     color: var(--rad);
