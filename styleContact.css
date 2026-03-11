@@ -41,27 +41,18 @@ nav {
 
 .logo-wrap {
     display: flex;
-    align-items: center;
-    gap: 10px;
+    gap: 5px;
     font-size: 1.2rem;
     font-weight: 800;
     color: var(--text);
     text-decoration: none;
 }
 
-/*.logo-icon {
-            width: 36px;
-            height: 36px;
-            background: var(--red);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }*/
+
 
 .logo-icon .material-icons {
     color: white;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
 }
 
 .nav-links {
