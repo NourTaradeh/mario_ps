@@ -66,6 +66,9 @@ nav {
     font-size: 1rem;
     font-weight: 500;
     transition: color 0.2s;
+}
+
+.nav-links .btn {
     margin-right: 30px;
 }
 
