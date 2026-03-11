@@ -264,6 +264,9 @@ nav {
 
 .card-body {
     padding: 20px 20px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .card-top {
@@ -311,6 +314,38 @@ nav {
 
 .btn-contact:hover {
     background: var(--red-dark);
+}
+
+.btn-whatsapp {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: #25D366;
+    color: var(--white);
+    border: none;
+    border-radius: 10px;
+    padding: 11px;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+    text-align: center;
+    text-decoration: none;
+    margin-bottom: 15px;
+}
+
+.btn-whatsapp:hover {
+    background: #1ebe5d;
+}
+
+.btn-whatsapp svg {
+    width: 18px;
+    height: 18px;
+    fill: white;
+    flex-shrink: 0;
 }
 
 .includes {
