@@ -48,7 +48,7 @@ nav {
     font-weight: 800;
     color: var(--text);
     letter-spacing: -0.5px;
-    
+
 }
 
 
@@ -66,6 +66,7 @@ nav {
     font-size: 1rem;
     font-weight: 500;
     transition: color 0.2s;
+    margin-right: 30px;
 }
 
 .nav-links a:hover {
