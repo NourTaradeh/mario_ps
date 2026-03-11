@@ -191,6 +191,10 @@ nav {
     margin-bottom: 6px;
 }
 
+.info-card .info-main a {
+    text-decoration: none;
+}
+
 .info-card .info-sub {
     font-size: 0.88rem;
     color: var(--muted);
