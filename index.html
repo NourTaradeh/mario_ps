@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mario.ps</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Playfair+Display:wght@700&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="styleIndex.css">
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <span class="logo"><img src="mario.jpg" alt="mario logo"
+        style="width:40px; height:40px; border-radius:50%; vertical-align:middle; margin-right:8px;"> مطعم ماريو </span>
+    <ul class="nav-links">
+      <li><a href="index.html">الرئيسية</a></li>
+      <li><a href="contact.html" class="btn-primary">📞 اتصل بنا</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-blob"></div>
+    <h1>أهلاً بكم في مطعم ماريو</h1>
+    <h3>مرحبًا بكم في مطعمنا، حيث نقدم أطباقًا طازجة ولذيذة يوميًا بجودة عالية وطعم يذكّر بالبيت. 🍽️</h3>
+    <a href="#menu" class="btn-primary">اكتشف القائمة</a>
+  </section>
+
+  <!-- MENU SECTION -->
+  <section class="menu-section" id="menu">
+    <div class="section-header">
+      <div class="section-accent"></div>
+      <h2 class="section-title" style="margin-left:auto; width:fit-content;">قائمة الطعام</h2>
+    </div>
+
+    <div class="filter-tabs">
+      <button class="tab active" onclick="filterTab(this,'برغر')">برغر</button>
+      <button class="tab" onclick="filterTab(this,'مقبلات')">مقبلات</button>
+      <button class="tab" onclick="filterTab(this,'وجبات')">وجبات</button>
+    </div>
+
+    <div class="cards-grid" id="cards-grid">
+      <!-- Card 1 -->
+      <div class="card" data-cat="برغر">
+        <img class="card-img" src="برجر_لحم.jpg" alt="برجر لحم">
+        <div class="card-body">
+          <div class="card-top">
+            <span class="card-name">برغر لحم</span>
+            <span class="card-price">20 شيكل</span>
+          </div>
+          <p class="card-desc">برغر لذيذ غني بالنكهة يقدّم مع إضافات طازجة وصوص خاص يمنحه طعمًا مميزًا.🍔</p>
+          <p style="font-size:0.82rem; font-weight:800; color:var(--muted); margin-bottom:7px;">✔ الوجبة تشمل:</p>
+          <div class="includes">
+            <div class="include-tag"><span>🍟</span> بطاطا</div>
+            <div class="include-tag"><span>🥤</span> كولا</div>
+            <div class="include-tag"><span>🍅</span> كاتشب</div>
+            <div class="include-tag"><span>🫙</span> صوص</div>
+          </div>
+          <a href="contact.html" class="btn-contact">تواصل معنا</a>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="card" data-cat="برغر">
+        <img class="card-img" src="برجرلحم_دبل.png" alt="برجر لحم دبل">
+        <div class="card-body">
+          <div class="card-top">
+            <span class="card-name">برجر لحم دبل </span>
+            <span class="card-price">30 شيكل</span>
+          </div>
+          <p class="card-desc">برجر دبل شهي بقطعتين من اللحم المشوي مع إضافات طازجة وصوص مميز داخل خبز طري.🍔</p>
+          <p style="font-size:0.82rem; font-weight:800; color:var(--muted); margin-bottom:7px;">✔ الوجبة تشمل:</p>
+          <div class="includes">
+            <div class="include-tag"><span>🍟</span> بطاطا</div>
+            <div class="include-tag"><span>🥤</span> كولا</div>
+            <div class="include-tag"><span>🍅</span> كاتشب</div>
+            <div class="include-tag"><span>🫙</span> صوص</div>
+          </div>
+          <a href="contact.html" class="btn-contact">تواصل معنا</a>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="card" data-cat="برغر">
+        <img class="card-img" src="برجر_لحم_بالصوص_الايطالي.jpg" alt="برجر لحم بالصوص الايطالي">
+        <div class="card-body">
+          <div class="card-top">
+            <span class="card-name">برجر لحم بالصوص الايطالي</span>
+            <span class="card-price">25 شيكل</span>
+          </div>
+          <p class="card-desc">برجر لحم شهي يقدّم مع صوص إيطالي غني بالنكهة داخل خبز طري. 🍔</p>
+          <p style="font-size:0.82rem; font-weight:800; color:var(--muted); margin-bottom:7px;">✔ الوجبة تشمل:</p>
+          <div class="includes">
+            <div class="include-tag"><span>🍟</span> بطاطا</div>
+            <div class="include-tag"><span>🥤</span> كولا</div>
+            <div class="include-tag"><span>🍅</span> كاتشب</div>
+            <div class="include-tag"><span>🫙</span> صوص</div>
+          </div>
+          <a href="contact.html" class="btn-contact">تواصل معنا</a>
+        </div>
+      </div>
+      <!-- Card 4 -->
+      <div class="card" data-cat="برغر">
+        <img class="card-img" src="برجر_لحم_ماريو.png" alt="برجر لحم ماريو">
+        <div class="card-body">
+          <div class="card-top">
+            <span class="card-name"> برجر لحم ماريو</span>
+            <span class="card-price">25 شيكل</span>
+          </div>
+          <p class="card-desc">برجر لحم مميز بطعم ماريو الخاص مع إضافات لذيذة تمنحك تجربة لا تُنسى. 🍔</p>
+          <p style="font-size:0.82rem; font-weight:800; color:var(--muted); margin-bottom:7px;">✔ الوجبة تشمل:</p>
+          <div class="includes">
+            <div class="include-tag"><span>🍟</span> بطاطا</div>
+            <div class="include-tag"><span>🥤</span> كولا</div>
+            <div class="include-tag"><span>🍅</span> كاتشب</div>
+            <div class="include-tag"><span>🫙</span> صوص</div>
+          </div>
+          <a href="contact.html" class="btn-contact">تواصل معنا</a>
+        </div>
+      </div>
+      <!-- Card 5 -->
+      <div class="card" data-cat="برغر">
+        <img class="card-img" src="برجر_دجاج.png" alt="برجر دجاج">
+        <div class="card-body">
+          <div class="card-top">
+            <span class="card-name"> برجر دجاج</span>
+            <span class="card-price">18 شيكل</span>
+          </div>
+          <p class="card-desc">برجر دجاج مقرمش مع مكونات طازجة وصوص خاص يمنحه نكهة مميزة. 🍔</p>
+          <p style="font-size:0.82rem; font-weight:800; color:var(--muted); margin-bottom:7px;">✔ الوجبة تشمل:</p>
+          <div class="includes">
+            <div class="include-tag"><span>🍟</span> بطاطا</div>
+            <div class="include-tag"><span>🥤</span> كولا</div>
+            <div class="include-tag"><span>🍅</span> كاتشب</div>
+            <div class="include-tag"><span>🫙</span> صوص</div>
+          </div>
+          <a href="contact.html" class="btn-contact">تواصل معنا</a>
+        </div>
+      </div>
+      <!-- Card 6 -->
+      <div class="card" data-cat="برغر">
+        <img class="card-img" src="برجر_دجاج_دبل.jpg" alt="برجر دجاج دبل">
+        <div class="card-body">
+          <div class="card-top">
+            <span class="card-name"> برجر دجاج دبل</span>
+            <span class="card-price">25 شيكل</span>
+          </div>
+          <p class="card-desc">برجر دجاج دبل لذيذ بقطعتين من الدجاج المقرمش مع صوص خاص داخل خبز طري. 🍔</p>
+          <p style="font-size:0.82rem; font-weight:800; color:var(--muted); margin-bottom:7px;">✔ الوجبة تشمل:</p>
+          <div class="includes">
+            <div class="include-tag"><span>🍟</span> بطاطا</div>
+            <div class="include-tag"><span>🥤</span> كولا</div>
+            <div class="include-tag"><span>🍅</span> كاتشب</div>
+            <div class="include-tag"><span>🫙</span> صوص</div>
+          </div>
+          <a href="contact.html" class="btn-contact">تواصل معنا</a>
+        </div>
+      </div>
+      <!-- Card 7 -->
+      <div class="card" data-cat="برغر">
+        <img class="card-img" src="برجر_دجاج_بالصوص_الايطالي.jpg" alt="برجر دجاج بالصوص الايطالي">
+        <div class="card-body">
+          <div class="card-top">
+            <span class="card-name"> برجر دجاج بالصوص الايطالي</span>
+            <span class="card-price">23 شيكل</span>
+          </div>
+          <p class="card-desc">برجر دجاج لذيذ مع صوص إيطالي غني بالنكهة يمنحه طعمًا رائعًا. 🍔</p>
+          <p style="font-size:0.82rem; font-weight:800; color:var(--muted); margin-bottom:7px;">✔ الوجبة تشمل:</p>
+          <div class="includes">
+            <div class="include-tag"><span>🍟</span> بطاطا</div>
+            <div class="include-tag"><span>🥤</span> كولا</div>
+            <div class="include-tag"><span>🍅</span> كاتشب</div>
+            <div class="include-tag"><span>🫙</span> صوص</div>
+          </div>
+          <a href="contact.html" class="btn-contact">تواصل معنا</a>
+        </div>
+      </div>
+      <!-- Card 8 -->
+      <div class="card" data-cat="برغر">
+        <img class="card-img" src="برجر_دجاج_ماريو.jpg" alt="برجر دجاج ماريو">
+        <div class="card-body">
+          <div class="card-top">
+            <span class="card-name"> برجر دجاج ماريو</span>
+            <span class="card-price">23 شيكل</span>
+          </div>
+          <p class="card-desc">برجر دجاج مميز بطعم ماريو الخاص يقدم ساخنًا مع إضافات لذيذة. 🍔</p>
+          <p style="font-size:0.82rem; font-weight:800; color:var(--muted); margin-bottom:7px;">✔ الوجبة تشمل:</p>
+          <div class="includes">
+            <div class="include-tag"><span>🍟</span> بطاطا</div>
+            <div class="include-tag"><span>🥤</span> كولا</div>
+            <div class="include-tag"><span>🍅</span> كاتشب</div>
+            <div class="include-tag"><span>🫙</span> صوص</div>
+          </div>
+          <a href="contact.html" class="btn-contact">تواصل معنا</a>
+        </div>
+      </div>
+
+      <!-- Card 9 (مقبلات) -->
+      <div class="card" data-cat="مقبلات" style="display:none">
+        <img class="card-img" src="بطاطا.jpg" alt="بطاطا كبير">
+        <div class="card-body">
+          <div class="card-top">
+            <span class="card-name">بطاطا مقلية (حجم كبير)</span>
+            <span class="card-price">10 شيكل</span>
+          </div>
+          <p class="card-desc">بطاطا مقلية ذهبية مقرمشة تقدم ساخنة بحجم كبير. 🍟</p>
+          <a href="contact.html" class="btn-contact">تواصل معنا</a>
+        </div>
+      </div>
+      <!-- Card 10 (مقبلات) -->
+      <div class="card" data-cat="مقبلات" style="display:none">
+        <img class="card-img" src="بطاطا.jpg" alt="بطاطا وسط">
+        <div class="card-body">
+          <div class="card-top">
+            <span class="card-name">بطاطا مقلية (حجم وسط)</span>
+            <span class="card-price">6 شيكل</span>
+          </div>
+          <p class="card-desc">بطاطا مقلية ذهبية مقرمشة تقدم ساخنة بحجم وسط. 🍟</p>
+          <a href="contact.html" class="btn-contact">تواصل معنا</a>
+        </div>
+      </div>
+      <!-- Card 11 (مقبلات) -->
+      <div class="card" data-cat="مقبلات" style="display:none">
+        <img class="card-img" src="بطاطا.jpg" alt="بطاطا صغير">
+        <div class="card-body">
+          <div class="card-top">
+            <span class="card-name">بطاطا مقلية (حجم صغير)</span>
+            <span class="card-price">3 شيكل</span>
+          </div>
+          <p class="card-desc">بطاطا مقلية ذهبية مقرمشة تقدم ساخنة بحجم صغير. 🍟</p>
+          <a href="contact.html" class="btn-contact">تواصل معنا</a>
+        </div>
+      </div>
+      <!-- Card 12 (مقبلات) -->
+      <div class="card" data-cat="مقبلات" style="display:none">
+        <img class="card-img" src="بطاطا_ماريو.jpg" alt="بطاطا ماريو">
+        <div class="card-body">
+          <div class="card-top">
+            <span class="card-name">بطاطا ماريو</span>
+            <span class="card-price">15 شيكل</span>
+          </div>
+          <p class="card-desc">فرنش فرايز + دجاج كرسبي + صوص تشيدر 🍟</p>
+          <a href="contact.html" class="btn-contact">تواصل معنا</a>
+        </div>
+      </div>
+      <!-- Card 13 (مقبلات) -->
+      <div class="card" data-cat="مقبلات" style="display:none">
+        <img class="card-img" src="مخلل.jpg" alt="مخلل ">
+        <div class="card-body">
+          <div class="card-top">
+            <span class="card-name">مخلل خيار</span>
+            <span class="card-price">2 شيكل</span>
+          </div>
+          <p class="card-desc">مخلل خيار طازج ومقرمش يضيف نكهة مميزة للوجبة. 🥒</p>
+          <a href="contact.html" class="btn-contact">تواصل معنا</a>
+        </div>
+      </div>
+      <!-- Card 14 (مقبلات) -->
+      <div class="card" data-cat="مقبلات" style="display:none">
+        <img class="card-img" src="سلطة.jpg" alt="سلطة">
+        <div class="card-body">
+          <div class="card-top">
+            <span class="card-name">سلطة ملفوف</span>
+            <span class="card-price">2 شيكل</span>
+          </div>
+          <p class="card-desc">سلطة ملفوف طازجة ومقرمشة بطعم منعش وخفيف. 🥗</p>
+          <a href="contact.html" class="btn-contact">تواصل معنا</a>
+        </div>
+      </div>
+      <!-- Card 15 (وجبات) -->
+      <div class="card" data-cat="وجبات" style="display:none">
+        <img class="card-img" src="مسحب_باجيت.jpeg" alt="مسحب باجيت">
+        <div class="card-body">
+          <div class="card-top">
+            <span class="card-name">مسحب باجيت</span>
+            <span class="card-price">20 شيكل</span>
+          </div>
+          <p class="card-desc">مسحب دجاج شهي داخل خبز باجيت طازج مع صوص مميز. 🥖</p>
+          <p style="font-size:0.82rem; font-weight:800; color:var(--muted); margin-bottom:7px;">✔ الوجبة تشمل:</p>
+          <div class="includes">
+            <div class="include-tag"><span>🍟</span> بطاطا</div>
+            <div class="include-tag"><span>🥤</span> كولا</div>
+            <div class="include-tag"><span>🍅</span> كاتشب</div>
+            <div class="include-tag"><span>🥒</span> مخلل</div>
+          </div>
+          <a href="contact.html" class="btn-contact">تواصل معنا</a>
+        </div>
+      </div>
+      <!-- Card 16 (وجبات) -->
+      <div class="card" data-cat="وجبات" style="display:none">
+        <img class="card-img" src="مسحب_صمون.jpg" alt="مسحب صمون">
+        <div class="card-body">
+          <div class="card-top">
+            <span class="card-name">مسحب صمون</span>
+            <span class="card-price">15 شيكل</span>
+          </div>
+          <p class="card-desc">مسحب دجاج شهي داخل خبز صمون طازج مع صوص مميز. 🍗</p>
+          <p style="font-size:0.82rem; font-weight:800; color:var(--muted); margin-bottom:7px;">✔ الوجبة تشمل:</p>
+          <div class="includes">
+            <div class="include-tag"><span>🍟</span> بطاطا</div>
+            <div class="include-tag"><span>🥤</span> كولا</div>
+            <div class="include-tag"><span>🍅</span> كاتشب</div>
+            <div class="include-tag"><span>🥒</span> مخلل</div>
+          </div>
+          <a href="contact.html" class="btn-contact">تواصل معنا</a>
+        </div>
+      </div>
+      <!-- Card 17 (وجبات) -->
+      <div class="card" data-cat="وجبات" style="display:none">
+        <img class="card-img" src="كرسبي_دجاج.jpg" alt="كرسبي دجاج">
+        <div class="card-body">
+          <div class="card-top">
+            <span class="card-name">كرسبي دجاج</span>
+            <span class="card-price">20 شيكل</span>
+          </div>
+          <p class="card-desc">مسحب دجاج شهي داخل خبز صمون طازج مع صوص مميز. 🍗</p>
+          <p style="font-size:0.82rem; font-weight:800; color:var(--muted); margin-bottom:7px;">✔ الوجبة تشمل:</p>
+          <div class="includes">
+            <div class="include-tag"><span>🍟</span> بطاطا</div>
+            <div class="include-tag"><span>🥤</span> كولا</div>
+            <div class="include-tag"><span>🍅</span> كاتشب</div>
+            <div class="include-tag"><span>🥒</span> مخلل</div>
+          </div>
+          <a href="contact.html" class="btn-contact">تواصل معنا</a>
+        </div>
+      </div>
+      <!-- Card 18 (وجبات) -->
+      <div class="card" data-cat="وجبات" style="display:none">
+        <img class="card-img" src="باشكا.jpg" alt="باشكا">
+        <div class="card-body">
+          <div class="card-top">
+            <span class="card-name">باشكا</span>
+            <span class="card-price">20 شيكل</span>
+          </div>
+          <p class="card-desc">باشكا شهية تقدم ساخنة مع صوص مميز.🍗</p>
+          <p style="font-size:0.82rem; font-weight:800; color:var(--muted); margin-bottom:7px;">✔ الوجبة تشمل:</p>
+          <div class="includes">
+            <div class="include-tag"><span>🍟</span> بطاطا</div>
+            <div class="include-tag"><span>🥤</span> كولا</div>
+            <div class="include-tag"><span>🍅</span> كاتشب</div>
+            <div class="include-tag"><span>🥒</span> مخلل</div>
+          </div>
+          <a href="contact.html" class="btn-contact">تواصل معنا</a>
+        </div>
+      </div>
+  </section>
+  <div class="show-more-wrap">
+    <button class="btn-show-more">
+      <span>عرض المزيد</span>
+      <span class="material-icons">keyboard_arrow_down</span>
+    </button>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ABOUT SECTION -->
+  <section class="about-section">
+    <h2>عن مطعمنا</h2>
+    <p>
+      في مطعم ماريو نؤمن أن الطعام الجيد يصنع لحظات مميزة، لذلك نقدم وجبات طازجة وشهية محضّرة بعناية لتمنحكم تجربة لذيذة
+      في كل زيارة.
+    </p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <i class="material-icons feature-icon">eco</i>
+        <h3>مكونات طازجة</h3>
+        <p>نختار أفضل المكونات الطازجة يوميًا لنقدم لكم طعمًا غنيًا وجودة عالية في كل وجبة.</p>
+      </div>
+      <div class="feature-card">
+        <i class="material-icons feature-icon">🍽️</i>
+        <h3>وصفات مميزة</h3>
+        <p>نقدم وصفات محضّرة بعناية تمنحكم نكهات لذيذة وتجربة طعام لا تُنسى.</p>
+      </div>
+      <div class="feature-card">
+        <i class="material-icons feature-icon">favorite</i>
+        <h3>خدمة مميزة</h3>
+        <p>نسعى لتقديم تجربة طعام رائعة وخدمة ودودة تجعلكم تشعرون بالراحة في كل زيارة.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <h2>مطعم ماريو</h2>
+    <p class="tagline">
+      نحن بانتظاركم لنقدم لكم أجمل اللحظات وأشهى الأطباق. تواصلوا معنا للحجز أو الاستفسار.
+    </p>
+    <a href="contact.html" class="btn-primary"> 📞تواصل معنا </a>
+    <ul class="footer-links">
+      <li><a href="https://www.facebook.com/share/14X9Z1sNQKS/?mibextid=wwXIfr">فيسبوك</a></li>
+      <li><a href="https://www.instagram.com/mario_restaurant_ps?igsh=N3AxZGJhbGI3bTM4">إنستغرام</a></li>
+      <li><a href="https://www.tiktok.com/@mrio.ps?_r=1&_t=ZS-94bM7TMslIg">تيك توك</a></li>
+    </ul>
+    <p class="footer-copy">مطعم ماريو , جميع الحقوق محفوظة 2026 ©</p>
+  </footer>
+
+  <script>
+    function filterTab(el, cat) {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      el.classList.add('active');
+      document.querySelectorAll('.card').forEach(c => {
+        c.style.display = c.dataset.cat === cat ? '' : 'none';
+      });
+    }
+  </script>
+</body>
+
+</html>
