@@ -69,7 +69,6 @@ nav {
     align-items: center;
     gap: 32px;
     list-style: none;
-    margin-right: 30px;
 }
 
 .nav-links a {
@@ -102,7 +101,6 @@ nav {
     transition: background 0.2s, transform 0.15s;
     text-decoration: none;
     display: inline-block;
-
 }
 
 .btn-primary:hover {
