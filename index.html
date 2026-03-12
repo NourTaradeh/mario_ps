@@ -444,7 +444,28 @@
     </ul>
     <p class="footer-copy">مطعم ماريو , جميع الحقوق محفوظة 2026 ©</p>
   </footer>
+  <div id="chat-bubble" onclick="toggleChat()">
+    <span class="material-icons">chat</span>
+  </div>
 
+  <div id="chat-window">
+    <div id="chat-header">
+      <div class="chat-avatar"><span class="material-icons">restaurant</span></div>
+      <div class="chat-info">
+        <strong>مساعدك في مطعم ماريو</strong>
+        <span>🟢 متاح الآن</span>
+      </div>
+      <span class="material-icons" id="chat-close" onclick="toggleChat()">close</span>
+    </div>
+    <div id="chat-messages"></div>
+    <div id="chat-input-area">
+      <button id="chat-send" onclick="sendMessage()">
+        <span class="material-icons">send</span>
+      </button>
+      <input id="chat-input" type="text" placeholder="اكتب سؤالك هنا..."
+        onkeydown="if(event.key==='Enter') sendMessage()" />
+    </div>
+  </div>
 
   <script>
     let expanded = false;
@@ -487,6 +508,178 @@
     window.addEventListener('scroll', () => {
       document.getElementById('scroll-top').classList.toggle('visible', window.scrollY > 300);
     });
+    // ── قاعدة بيانات الأجوبة ──
+    const FAQ = [
+      {
+        keys: ['قائمة', 'منيو', 'menu', 'أكل', 'وجبات', 'طعام', 'عندكم شو'],
+        answer: '🍔 قائمتنا تشمل:\n\nبرغر:\n• برغر لحم — 20 شيكل\n• برجر لحم ماريو — 25 شيكل\n• برجر دجاج — 18 شيكل \n• برجر دجاج ماريو — 23 شيكل\n\nمقبلات:\n• بطاطا مقلية (حجم كبير) — 10 شيكل \n• بطاطا ماريو — 15 شيكل \n• مخلل خيار — 2 شيكل\n\nوجبات:\n• مسحب باجيت — 20 شيكل \n• كرسبي دجاج — 20 شيكل\n\n✅ جميع وجبات البرغر تشمل: بطاطا + كولا + كاتشب + صوص'
+      },
+      {
+        keys: ['سعر', 'أسعار', 'كم', 'بكم', 'تكلفة'],
+        answer: '💰 أسعارنا:\n\nبرغر:\n• برغر لحم — 20 شيكل\n• برجر لحم ماريو — 25 شيكل\n• برجر دجاج — 18 شيكل \n• برجر دجاج ماريو — 23 شيكل\n\nمقبلات:\n• بطاطا مقلية (حجم كبير) — 10 شيكل \n• بطاطا ماريو — 15 شيكل \n• مخلل خيار — 2 شيكل\n\nوجبات:\n• مسحب باجيت — 20 شيكل \n• كرسبي دجاج — 20 شيكل\n\n✅ جميع وجبات البرغر تشمل: بطاطا + كولا + كاتشب + صوص🍟'
+      },
+      {
+        keys: ['وقت', 'ساعات', 'أوقات', 'متى', 'فتح', 'مفتوح', 'يفتح', 'دوام'],
+        answer: '⏰ أوقات العمل:\n• السبت - الأربعاء: 12:00 م – 1:00 ص\n• الخميس: 12:00 م – 2:00 ص\n• الجمعة: 1:00 م – 2:00 ص\n\nخدمة التوصيل متاحة خلال جميع ساعات العمل 🛵'
+      },
+      {
+        keys: ['موقع', 'عنوان', 'وين', 'فين', 'مكان', 'كيف أوصل', 'خرائط'],
+        answer: '📍 موقعنا:\nالشارع الرئيسي - مفرق الكازية القديمة \nالخليل - تفوح \n\nيمكنك فتح الخرائط من صفحة التواصل 🗺️'
+      },
+      {
+        keys: ['توصيل', 'ديليفري', 'delivery', 'توصل', 'أطلب'],
+        answer: '🛵 نعم! خدمة التوصيل متاحة خلال جميع ساعات العمل.\n\nللطلب تواصل معنا عبر:\n📞 الهاتف: 972598126090+\n💬 واتساب: اضغط زر "راسلنا" على أي منتج \n أو من خلال مواقع التواصل الاجتماعي'
+      },
+      {
+        keys: ['تواصل', 'اتصال', 'هاتف', 'رقم', 'واتساب', 'تليفون', 'بريد', 'ايميل'],
+        answer: '📞 للتواصل معنا:\n• هاتف: 972598126090+\n• بريد: mariops@gmail.com\n• واتساب: اضغط "راسلنا" على أي منتج\n\nأو زر صفحة "اتصل بنا" من القائمة 😊'
+      },
+      {
+        keys: ['برغر لحم', 'لحم عادي'],
+        answer: '🍔 برغر لحم — 20 شيكل\n\n✅ الوجبة تشمل: بطاطا + كولا + كاتشب + صوص'
+      },
+      {
+        keys: ['دبل', 'لحم دبل', 'دبل لحم'],
+        answer: '🍔 برغر لحم دبل — 30 شيكل\n\n✅ الوجبة تشمل: بطاطا + كولا + كاتشب + صوص'
+      },
+      {
+        keys: ['صوص ايطالي', 'لحم بالصوص', 'الايطالي'],
+        answer: '🍔 برغر لحم بالصوص الايطالي — 25 شيكل\n\n✅ الوجبة تشمل: بطاطا + كولا + كاتشب + صوص'
+      },
+      {
+        keys: ['ماريو', 'برغر ماريو', 'لحم ماريو'],
+        answer: '🍔 برغر لحم ماريو — 25 شيكل\n\n✅ الوجبة تشمل: بطاطا + كولا + كاتشب + صوص'
+      },
+      {
+        keys: ['برغر دجاج', 'دجاج عادي'],
+        answer: '🍗 برغر دجاج — 18 شيكل\n\n✅ الوجبة تشمل: بطاطا + كولا + كاتشب + صوص'
+      },
+      {
+        keys: ['دجاج دبل', 'دبل دجاج'],
+        answer: '🍗 برغر دجاج دبل — 25 شيكل\n\n✅ الوجبة تشمل: بطاطا + كولا + كاتشب + صوص'
+      },
+      {
+        keys: ['دجاج بالصوص', 'دجاج ايطالي'],
+        answer: '🍗 برغر دجاج بالصوص الايطالي — 23 شيكل\n\n✅ الوجبة تشمل: بطاطا + كولا + كاتشب + صوص'
+      },
+      {
+        keys: ['دجاج ماريو', 'ماريو دجاج'],
+        answer: '🍗 برغر دجاج ماريو — 23 شيكل\n\n✅ الوجبة تشمل: بطاطا + كولا + كاتشب + صوص'
+      },
+      {
+        keys: ['بطاطا مقلية', 'بطاطا', 'فرايز'],
+        answer: '🍟 بطاطا مقلية:\n• صغير — 3 شيكل\n• وسط — 6 شيكل\n• كبير — 10 شيكل'
+      },
+      {
+        keys: ['بطاطا ماريو'],
+        answer: '🍟 بطاطا ماريو — 15 شيكل\nفرنش فرايز + دجاج كرسبي + صوص تشيدر'
+      },
+      {
+        keys: ['مخلل', 'سلطة', 'صوص'],
+        answer: '🥗 مخلل 2 + سلطة 2 + صوص 2'
+      },
+      {
+        keys: ['مسحب باجيت', 'باجيت'],
+        answer: '🥙 مسحب باجيت — 20 شيكل\n\n✅ جميع الوجبات شاملة: بطاطا + كولا + كلسلو + مخلل + كاتشب'
+      },
+      {
+        keys: ['مسحب صمون', 'صمون'],
+        answer: '🥙 مسحب صمون — 15 شيكل\n\n✅ جميع الوجبات شاملة: بطاطا + كولا + كلسلو + مخلل + كاتشب'
+      },
+      {
+        keys: ['كرسبي دجاج', 'كرسبي وجبة'],
+        answer: '🍗 كرسبي دجاج — 20 شيكل\n\n✅ جميع الوجبات شاملة: بطاطا + كولا + كلسلو + مخلل + كاتشب'
+      },
+      {
+        keys: ['باشكا'],
+        answer: '🍽️ باشكا — 20 شيكل\n\n✅ جميع الوجبات شاملة: بطاطا + كولا + كلسلو + مخلل + كاتشب'
+      },
+      {
+        keys: ['شكرا', 'شكراً', 'مشكور', 'thanks', 'ممتاز', 'كويس'],
+        answer: 'العفو! يسعدنا خدمتك 😊\nنتمنى لك وجبة شهية في ماريو بي إس 🍕'
+      },
+      {
+        keys: ['مرحبا', 'هلا', 'السلام', 'اهلا', 'أهلاً', 'هاي', 'hi', 'hello'],
+        answer: 'أهلاً وسهلاً! 👋\nكيف أقدر أساعدك اليوم؟'
+      }
+    ];
+
+    const QUICK_QUESTIONS = ['📋 القائمة', '💰 الأسعار', '⏰ أوقات العمل', '📍 الموقع', '🛵 التوصيل'];
+
+    let chatOpen = false;
+    let greeted = false;
+
+    function toggleChat() {
+      chatOpen = !chatOpen;
+      document.getElementById('chat-window').classList.toggle('open', chatOpen);
+      document.querySelector('#chat-bubble .material-icons').textContent = chatOpen ? 'close' : 'chat';
+      if (chatOpen && !greeted) {
+        greeted = true;
+        setTimeout(() => {
+          addBotMsg('أهلاً وسهلاً! 👋 أنا مساعدك في مطعم ماريو\nاختر من الأسئلة السريعة أو اكتب سؤالك:');
+          addQuickBtns();
+        }, 400);
+      }
+    }
+
+    function addBotMsg(text) {
+      const msgs = document.getElementById('chat-messages');
+      const div = document.createElement('div');
+      div.className = 'msg bot';
+      div.textContent = text;
+      msgs.appendChild(div);
+      msgs.scrollTop = msgs.scrollHeight;
+    }
+
+    function addUserMsg(text) {
+      const msgs = document.getElementById('chat-messages');
+      const div = document.createElement('div');
+      div.className = 'msg user';
+      div.textContent = text;
+      msgs.appendChild(div);
+      msgs.scrollTop = msgs.scrollHeight;
+    }
+
+    function addQuickBtns() {
+      const msgs = document.getElementById('chat-messages');
+      const wrap = document.createElement('div');
+      wrap.className = 'quick-btns';
+      QUICK_QUESTIONS.forEach(q => {
+        const btn = document.createElement('button');
+        btn.className = 'quick-btn';
+        btn.textContent = q;
+        btn.onclick = () => { wrap.remove(); handleInput(q); };
+        wrap.appendChild(btn);
+      });
+      msgs.appendChild(wrap);
+      msgs.scrollTop = msgs.scrollHeight;
+    }
+
+    function getReply(text) {
+      const lower = text.toLowerCase();
+      for (const item of FAQ) {
+        if (item.keys.some(k => lower.includes(k))) return item.answer;
+      }
+      return 'عذراً، ما فهمت سؤالك 😅\nجرب تسأل عن: القائمة، الأسعار، أوقات العمل، الموقع، أو التوصيل.\n\nأو تواصل معنا مباشرة:\n📞 966500000000+';
+    }
+
+    function handleInput(text) {
+      addUserMsg(text);
+      setTimeout(() => {
+        addBotMsg(getReply(text));
+        addQuickBtns();
+      }, 400);
+    }
+
+    function sendMessage() {
+      const input = document.getElementById('chat-input');
+      const text = input.value.trim();
+      if (!text) return;
+      input.value = '';
+      // إزالة الأزرار القديمة
+      document.querySelectorAll('.quick-btns').forEach(el => el.remove());
+      handleInput(text);
+    }
 
     // تطبيق الإعدادات الافتراضية عند تحميل الصفحة
     updateCards();
