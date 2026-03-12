@@ -31,9 +31,14 @@
   <section class="hero">
     <div class="hero-blob"></div>
     <h1>أهلاً بكم في مطعم ماريو</h1>
-    <h3>مرحبًا بكم في مطعمنا، حيث نقدم أطباقًا طازجة ولذيذة يوميًا بجودة عالية وطعم يذكّر بالبيت. 🍽️ </h3>
+    <h3>مرحبًا بكم في مطعمنا، حيث نقدم وجبات طازجة ولذيذة يوميًا بجودة عالية وطعم يذكّر بالبيت. 🍽️ </h3>
     <h4>توصيل سريع إلى جميع المناطق 🚚</h4>
-    <a href="#menu" class="btn-primary">اكتشف القائمة</a>
+    <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+      <a href="#menu" class="btn-primary">اكتشف القائمة</a>
+      <a href="https://wa.me/972598126090" class="btn-primary"
+        style="background:transparent; border:2px solid white;">📞 اتصل
+        الآن</a>
+    </div>
   </section>
 
   <!-- MENU SECTION -->
@@ -439,6 +444,28 @@
     </ul>
     <p class="footer-copy">مطعم ماريو , جميع الحقوق محفوظة 2026 ©</p>
   </footer>
+  <div id="chat-bubble" onclick="toggleChat()">
+    <span class="material-icons">chat</span>
+  </div>
+
+  <div id="chat-window">
+    <div id="chat-header">
+      <div class="chat-avatar"><span class="material-icons">smart_toy</span></div>
+      <div class="chat-info">
+        <strong>مساعد ماريو بي إس</strong>
+        <span>🟢 متاح الآن</span>
+      </div>
+      <span class="material-icons" id="chat-close" onclick="toggleChat()">close</span>
+    </div>
+    <div id="chat-messages"></div>
+    <div id="chat-input-area">
+      <button id="chat-send" onclick="sendMessage()">
+        <span class="material-icons">send</span>
+      </button>
+      <input id="chat-input" type="text" placeholder="اكتب سؤالك هنا..."
+        onkeydown="if(event.key==='Enter') sendMessage()" />
+    </div>
+  </div>
 
   <script>
     let expanded = false;
@@ -481,6 +508,109 @@
     window.addEventListener('scroll', () => {
       document.getElementById('scroll-top').classList.toggle('visible', window.scrollY > 300);
     });
+    const SYSTEM_PROMPT = `أنت مساعد ذكي لمطعم "ماريو بي إس" الإيطالي. تتحدث باللغة العربية فقط. كن ودوداً ومختصراً.
+
+معلومات المطعم:
+- الاسم: ماريو بي إس
+- الموقع: حي العليا، طريق الملك فهد، الرياض
+- الهاتف: 966500000000+
+- البريد: contact@mariops.com
+- خدمة التوصيل: متاحة خلال جميع ساعات العمل
+
+أوقات العمل:
+- السبت - الأربعاء: 12:00 م - 1:00 ص
+- الخميس: 12:00 م - 2:00 ص
+- الجمعة (يوم العائلة): 1:00 م - 2:00 ص
+
+القائمة:
+برغر:
+- برغر دجاج مشوي: 32 ريال
+- كلاسيك برغر: 35 ريال
+- دبل سموكي: 42 ريال
+جميع وجبات البرغر تشمل: بطاطا + كولا + كاتشب + صوص
+
+مقبلات:
+- سلطة سيزر: 22 ريال
+
+وجبات:
+- باستا بولونيز: 38 ريال`;
+
+    let chatHistory = [];
+    let chatOpen = false;
+    let greeted = false;
+
+    function toggleChat() {
+      chatOpen = !chatOpen;
+      document.getElementById('chat-window').classList.toggle('open', chatOpen);
+      document.querySelector('#chat-bubble .material-icons').textContent = chatOpen ? 'close' : 'chat';
+      if (chatOpen && !greeted) {
+        greeted = true;
+        setTimeout(() => addBotMsg('أهلاً وسهلاً! 👋 أنا مساعد ماريو بي إس. كيف أقدر أساعدك؟\n\nيمكنك سؤالي عن القائمة، الأسعار، أوقات العمل، أو الموقع.'), 400);
+      }
+    }
+
+    function addBotMsg(text) {
+      const msgs = document.getElementById('chat-messages');
+      const div = document.createElement('div');
+      div.className = 'msg bot';
+      div.style.whiteSpace = 'pre-wrap';
+      div.textContent = text;
+      msgs.appendChild(div);
+      msgs.scrollTop = msgs.scrollHeight;
+    }
+
+    function addUserMsg(text) {
+      const msgs = document.getElementById('chat-messages');
+      const div = document.createElement('div');
+      div.className = 'msg user';
+      div.textContent = text;
+      msgs.appendChild(div);
+      msgs.scrollTop = msgs.scrollHeight;
+    }
+
+    function showTyping() {
+      const msgs = document.getElementById('chat-messages');
+      const div = document.createElement('div');
+      div.className = 'typing';
+      div.id = 'typing-indicator';
+      div.innerHTML = '<span></span><span></span><span></span>';
+      msgs.appendChild(div);
+      msgs.scrollTop = msgs.scrollHeight;
+      return div;
+    }
+
+    async function sendMessage() {
+      const input = document.getElementById('chat-input');
+      const text = input.value.trim();
+      if (!text) return;
+      input.value = '';
+
+      addUserMsg(text);
+      chatHistory.push({ role: 'user', content: text });
+
+      const typing = showTyping();
+
+      try {
+        const res = await fetch('https://api.anthropic.com/v1/messages', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            model: 'claude-sonnet-4-20250514',
+            max_tokens: 1000,
+            system: SYSTEM_PROMPT,
+            messages: chatHistory
+          })
+        });
+        const data = await res.json();
+        const reply = data.content?.[0]?.text || 'عذراً، حدث خطأ. حاول مرة أخرى.';
+        typing.remove();
+        addBotMsg(reply);
+        chatHistory.push({ role: 'assistant', content: reply });
+      } catch {
+        typing.remove();
+        addBotMsg('عذراً، حدث خطأ في الاتصال. حاول مرة أخرى.');
+      }
+    }
 
     // تطبيق الإعدادات الافتراضية عند تحميل الصفحة
     updateCards();
