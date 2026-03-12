@@ -422,7 +422,9 @@
       </div>
     </div>
   </section>
-
+  <button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <span class="material-icons">keyboard_arrow_up</span>
+  </button>
   <!-- FOOTER -->
   <footer>
     <h2>مطعم ماريو</h2>
@@ -476,6 +478,9 @@
       document.getElementById('show-more-text').textContent = expanded ? 'عرض أقل' : 'عرض المزيد';
       document.getElementById('show-more-icon').textContent = expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down';
     }
+    window.addEventListener('scroll', () => {
+      document.getElementById('scroll-top').classList.toggle('visible', window.scrollY > 300);
+    });
 
     // تطبيق الإعدادات الافتراضية عند تحميل الصفحة
     updateCards();
