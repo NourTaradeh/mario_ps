@@ -573,27 +573,48 @@ footer .btn-primary {
     position: fixed;
     bottom: 32px;
     right: 32px;
-    width: 56px;
-    height: 56px;
-    background: var(--red);
-    border-radius: 50%;
+    background: #d42b2b;
+    border-radius: 50px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: 10px;
+    padding: 12px 20px;
     cursor: pointer;
     box-shadow: 0 4px 20px rgba(212, 43, 43, 0.45);
     z-index: 1000;
-    transition: transform 0.2s, background 0.2s;
+    transition: all 0.25s;
 }
 
 #chat-bubble:hover {
-    transform: scale(1.08);
-    background: var(--red-dark);
+    transform: translateY(-2px);
+    background: #b01e1e;
 }
 
 #chat-bubble .material-icons {
     color: white;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+}
+
+#chat-bubble-name {
+    color: white;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    white-space: nowrap;
+    transition: opacity 0.2s;
+}
+
+#chat-bubble.is-open {
+    padding: 12px;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    justify-content: center;
+}
+
+#chat-bubble.is-open #chat-bubble-name {
+    display: none;
 }
 
 #chat-window {

@@ -446,6 +446,7 @@
   </footer>
   <div id="chat-bubble" onclick="toggleChat()">
     <span class="material-icons">chat</span>
+    <span id="chat-bubble-name">مساعد ماريو 🍔</span>
   </div>
 
   <div id="chat-window">
@@ -620,6 +621,7 @@
           addQuickBtns();
         }, 400);
       }
+      document.getElementById('chat-bubble-name').style.display = chatOpen ? 'none' : 'inline';
     }
 
     function addBotMsg(text) {
@@ -660,7 +662,7 @@
       for (const item of FAQ) {
         if (item.keys.some(k => lower.includes(k))) return item.answer;
       }
-      return 'عذراً، ما فهمت سؤالك 😅\nجرب تسأل عن: القائمة، الأسعار، أوقات العمل، الموقع، أو التوصيل.\n\nأو تواصل معنا مباشرة:\n📞 966500000000+';
+      return 'عذراً، ما فهمت سؤالك 😅\nجرب تسأل عن: القائمة، الأسعار، أوقات العمل، الموقع، أو التوصيل.\n\nأو تواصل معنا مباشرة:\n📞 972598126090+';
     }
 
     function handleInput(text) {
